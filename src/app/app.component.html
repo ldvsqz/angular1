@@ -1,40 +1,121 @@
-<nav class="navbar navbar-dark bg-primary">
-  <a href="" class="navbar-brand">Control de rendimiento</a>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand">Control de rendimiento</a>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" href="#" (click)="hideTabs(false, true, true)"
+          >Registro de tiempo</a
+        >
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#" (click)="hideTabs(true, false, true)"
+          >Reportes</a
+        >
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#" (click)="hideTabs(true, true, false)"
+          >Usuarios</a
+        >
+      </li>
+    </ul>
+  </div>
+  <a class="nav-link" style="color: aliceblue;" href="#">Cerrar sesión</a>
 </nav>
 
 <div class="container mt-4">
-  <div class="row">
-    <div class="col-sm-6">
-      <form action="" method="post">
-        <div class="imgcontainer"></div>
-        <div class="container">
-          <label for="uname"><b>Username</b></label>
+  <h3>Menú de administrador</h3>
+  <!--registro del tiempo-->
+  <div class="col-sm-4" [hidden]="hideregistroTiempo">
+    <h5>Registro del tiempo</h5>
+    <form class="form-horizontal" action="">
+      <div class="form-group">
+        <label for="Nombre" class="control-label col-sm-2">Nombre: </label>
+        <div class="col-sm-12">
           <input
             type="text"
-            placeholder="Enter Username"
-            name="uname"
             class="form-control"
+            id="Nombre"
+            name="Nombre"
+            placeholder="Nombre del empleado"
           />
-
-          <label for="psw"><b>Password</b></label>
-          <input
-            type="password"
-            placeholder="Enter Password"
-            name="psw"
-            class="form-control"
-          />
-          <div class="mt-2">
-            <span class="mr-4"><a href="#">Sign in</a></span>
-            <span class="mr-4"><a href="#">Forgot password?</a></span>
-          </div>
-
-          <div class="mt-4">
-            <button type="submit" class="btn btn-success">
-              Login
-            </button>
-          </div>
         </div>
-      </form>
+      </div>
+      <div class="form-group">
+        <label for="Puesto" class="control-label col-sm-2">Puesto: </label>
+        <div class="col-sm-12">
+          <input
+            type="text"
+            class="form-control"
+            id="Puesto"
+            name="Puesto"
+            placeholder="Puesto del empleado"
+          />
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="tiempo" class="control-label col-sm-2">Tiempo: </label>
+        <div class="col-sm-12">
+          <input
+            type="text"
+            class="form-control"
+            id="tiempo"
+            name="tiempo"
+            placeholder="Tiempo"
+          />
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-sm-10 col-sm-offset-2">
+          <button type="submit" class="btn btn-success mr-4">
+            Save
+          </button>
+          <button
+            type="submit"
+            class="btn btn-danger mr-4"
+            (click)="hideTabs(true, true, true)"
+          >
+            Cancel
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+  <!--reportes-->
+  <div class="col-sm-4" [hidden]="hideReportes">
+    <h5>Reportes</h5>
+  </div>
+  <!--Usuarios-->
+  <div class="col-sm-4" [hidden]="hideUsuarios">
+    <h5>Usuarios</h5>
+    <div class="col-sm-8">
+      <table class="table table-striped table-dark">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Apellidos</th>
+            <th>Puesto</th>
+            <th>eMail</th>
+            <th>Editar</th>
+            <th>Eliminar</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let emp of employees; let i = index">
+            <td>{{ emp.id }}</td>
+            <td>{{ emp.name }}</td>
+            <td>{{ emp.lastname }}</td>
+            <td>{{ emp.charge }}</td>
+            <td>{{ emp.email }}</td>
+            <td>
+              <a class="btn btn-success" (click)="editEmployee(i)">Edit</a>
+            </td>
+            <td>
+              <a class="btn btn-danger" (click)="deleteEmployee(i)">Delete</a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
 </div>

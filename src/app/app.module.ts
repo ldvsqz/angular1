@@ -1,13 +1,19 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { Routes, RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
-import { LoginModule } from './login/login.module';
-import { AdminMenuModule } from './admin-menu/admin-menu.module';
+import { LoginComponent } from './login/login.component';
+import { AdminMenuComponent } from './admin-menu/admin-menu.component';
+
+const routes: Routes = [
+  { path: 'Login', component: LoginComponent },
+  { path: 'admenu', component: AdminMenuComponent },
+];
 
 @NgModule({
-  declarations: [AppComponent],
-  imports: [BrowserModule, LoginModule, AdminMenuModule],
+  declarations: [AppComponent, LoginComponent, AdminMenuComponent],
+  imports: [BrowserModule],
   providers: [],
   bootstrap: [AppComponent],
 })
